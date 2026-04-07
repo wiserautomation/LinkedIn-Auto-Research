@@ -1,0 +1,54 @@
+[
+    {
+        "domain": ".www.linkedin.com",
+        "expirationDate": 1806324014.727359,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "li_at",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "AQEDAWHie4wC4jLhAAABnTmb8msAAAGdXah2a00AUp_up6YNd4vf7d3paeeChoPz9hkbYxuPmj1rU-_8GnFBMHavlToJ_LfArHNABz_gmSH2OrZ2G7vykwzTW-xQJKZTloGbsj-zzea4VLqv0fOX3Fo2"
+    },
+    {
+        "domain": ".www.linkedin.com",
+        "expirationDate": 1782564014.72745,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "JSESSIONID",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "\"ajax:4598776862435506624\""
+    },
+    {
+        "domain": ".linkedin.com",
+        "expirationDate": 1806326428.066846,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "bcookie",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "\"v=2&57d9acd0-832c-45a5-82f2-71b6ab47b978\""
+    },
+    {
+        "domain": ".www.linkedin.com",
+        "expirationDate": 1806326428.066975,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "bscookie",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "\"v=1&20260322093616a40e7347-1c76-4552-8743-72a213148118AQFK8yROPutoO-inpn2xnnfC65a71O2E\""
+    }
+]
