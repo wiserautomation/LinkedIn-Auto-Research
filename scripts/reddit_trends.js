@@ -12,7 +12,7 @@ async function getRedditTrends() {
   // If no Redditor credentials, we can fallback to a public JSON fetch
   // though snoowrap is preferred for detailed stats.
   if (!process.env.REDDIT_CLIENT_ID || !process.env.REDDIT_CLIENT_SECRET) {
-    console.log("⚠️ Reddit API credentials missing. Falling back to public JSON fetch...");
+    console.error("⚠️ Reddit API credentials missing. Falling back to public JSON fetch...");
     return await fetchPublicRedditTrends();
   }
 
@@ -27,7 +27,7 @@ async function getRedditTrends() {
   const trends = [];
 
   for (const sub of TARGET_SUBREDDITS) {
-    console.log(`🔍 Scraping r/${sub}...`);
+    console.error(`🔍 Scraping r/${sub}...`);
     const posts = await r.getSubreddit(sub).getHot({ limit: 5 });
     
     posts.forEach(post => {
@@ -74,11 +74,17 @@ async function fetchPublicRedditTrends() {
 }
 
 if (require.main === module) {
+  const fs = require('fs');
+  const path = require('path');
+  const outFile = process.argv[2] || 'trends.json';
+
   getRedditTrends().then(trends => {
-    console.log(JSON.stringify(trends, null, 2));
+    const outPath = path.isAbsolute(outFile) ? outFile : path.join(process.cwd(), outFile);
+    fs.writeFileSync(outPath, JSON.stringify(trends, null, 2));
+    console.error(`✅ Reddit trends saved to ${outPath}`);
     process.exit(0);
   }).catch(err => {
-    console.error(err);
+    console.error(`❌ Reddit scraping failed: ${err.message}`);
     process.exit(1);
   });
 }

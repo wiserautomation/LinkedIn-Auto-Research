@@ -1,0 +1,73 @@
+name: 🚀 Autonomous GTM Fleet Master
+# Unifies LinkedIn authority, X technical strikes, and expertise engagement.
+
+on:
+  schedule:
+    # Daily at 9:00 AM UTC (Primary Strike)
+    - cron: '0 9 * * *'
+  workflow_dispatch: # Allows manual trigger for immediate strikes
+
+jobs:
+  gtm-strike-cycle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 🛠️ Setup Node.js & Python
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: 📦 Install Runtime Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget gnupg xvfb libgbm-dev
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          python3 -m pip install requests python-dotenv
+          
+      - name: 📦 Install Node Modules
+        run: npm install
+        
+      - name: 🧠 AI Content Generation (LinkedIn)
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          node scripts/reddit_trends.js > trends.json
+          python3 scripts/lead_gen_agent.py --trends trends.json
+        
+      - name: 🐦 X Repurposing (4 Technical Strikes)
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: python3 scripts/x_repurposer.py logs/temp_post.txt
+        
+      - name: 💼 LinkedIn Broadcast
+        env:
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
+          DISCORD_WEBHOOK_LINKEDIN: ${{ secrets.DISCORD_WEBHOOK_LINKEDIN }}
+        run: |
+          POST_CONTENT=$(cat logs/temp_post.txt)
+          node scripts/puppeteer_linkedin_post.js "$POST_CONTENT"
+          
+      - name: 🌩️ X Initial Strike (@AlexPeghin)
+        env:
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
+          DISCORD_WEBHOOK_X: ${{ secrets.DISCORD_WEBHOOK_X }}
+        run: |
+          # Pull first post from queue
+          node -e "const q = JSON.parse(require('fs').readFileSync('logs/x_queue.json')); console.log(q[0]);" > logs/strike_1.txt
+          node scripts/puppeteer_x_post.js "$(cat logs/strike_1.txt)"
+          
+      - name: 🤝 Expertise Engagement (LinkedIn Comments)
+        env:
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
+          DISCORD_WEBHOOK_LINKEDIN: ${{ secrets.DISCORD_WEBHOOK_LINKEDIN }}
+        run: node scripts/linkedin_commenter.js
+        
+      - name: 🚨 Alarm on Failure
+        if: failure()
+        env:
+          DISCORD_WEBHOOK_ALARM: ${{ secrets.DISCORD_WEBHOOK_ALARM }}
+        run: node scripts/discord_reporter.js "ALARM" "🚨 **GTM Fleet Strike Failure**! The April 9th autonomous cycle halted. Check GitHub Actions logs." logs/x_stealth_error.png || true

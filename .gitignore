@@ -1,0 +1,8 @@
+node_modules/
+logs/
+*.png
+*.txt
+*.json
+!package.json
+!package-lock.json
+!trending.json

@@ -1,0 +1,202 @@
+[
+  {
+    "subreddit": "AI_Agents",
+    "title": "Weekly Thread: Project Display",
+    "content": "Weekly thread to show off your AI Agents and LLM Apps! Top voted projects will be featured in our weekly [newsletter](http://ai-agents-weekly.beehiiv.com).",
+    "score": 1,
+    "comments": 5,
+    "url": "https://reddit.com/r/AI_Agents/comments/1sfx17e/weekly_thread_project_display/"
+  },
+  {
+    "subreddit": "AI_Agents",
+    "title": "Weekly Hiring Thread",
+    "content": "If you're hiring use this thread.\n\nInclude:\n\n1. Company Name\n2. Role Name\n3. Full Time/Part Time/Contract\n4. Role Description\n5. Salary Range\n6. Remote or Not\n7. Visa Sponsorship or Not",
+    "score": 1,
+    "comments": 1,
+    "url": "https://reddit.com/r/AI_Agents/comments/1se30fg/weekly_hiring_thread/"
+  },
+  {
+    "subreddit": "AI_Agents",
+    "title": "i used to judge AI projects by their architecture. looking at the new wave of builders, pure coding skill is basically a commodity now",
+    "content": "I've been giving myself a bit of an existential crisis lately. just spent the last three weeks perfectly configuring a dockerized backend for an ai tool that has exactly zero active users. \n\nmeanwhile i was looking through the participant roster for an ai hackathon happening in shanghai this week (via rednote), and the profiles were a massive reality check. \n\nthe people building the most interesting stuff rn aren't traditional ml researchers or senior backend architects. they dont have a decade ",
+    "score": 32,
+    "comments": 23,
+    "url": "https://reddit.com/r/AI_Agents/comments/1sgc7pm/i_used_to_judge_ai_projects_by_their_architecture/"
+  },
+  {
+    "subreddit": "AI_Agents",
+    "title": "We went from 3 agents to 40 in four months. Nobody knows what half of them do anymore",
+    "content": "Four months ago we had 3 agents. A coding assistant, an incident triage bot, and a deployment helper. Clean, manageable, everyone knew what they did\n\nToday we have somewhere around 40. I say \"somewhere around\" because honestly nobody has an exact count anymore. Different teams spun up their own agents for PR reviews, log analysis, on-call summaries, data pipeline monitoring, customer ticket routing, documentation updates — you name it\n\nSound familiar? Because this is exactly what happened with m",
+    "score": 10,
+    "comments": 13,
+    "url": "https://reddit.com/r/AI_Agents/comments/1sghg1l/we_went_from_3_agents_to_40_in_four_months_nobody/"
+  },
+  {
+    "subreddit": "AI_Agents",
+    "title": "I built this last week, woke up to 300+ stars and a developer with 28k followers tweeting about it, now PRs are coming in from contributors I've never met. Sharing here since this community is exactly who it's built for.",
+    "content": "Hello! I made mex last week after getting frustrated with claude code limits.\n\nfor anyone not interested in reading all that, links for the repo and the docs are in the replies.\n\nWhat is mex?\n\nit's a structured markdown scaffold that lives in .mex/ in your project root. Instead of one big context file, the agent starts with a \\~120 token bootstrap that points to a routing table. The routing table maps task types to the right context file, working on auth? Load context/architecture.md. Writing ne",
+    "score": 59,
+    "comments": 14,
+    "url": "https://reddit.com/r/AI_Agents/comments/1sfz4h5/i_built_this_last_week_woke_up_to_300_stars_and_a/"
+  },
+  {
+    "subreddit": "MachineLearning",
+    "title": "[D] Self-Promotion Thread",
+    "content": "Please post your personal projects, startups, product placements, collaboration needs, blogs etc.\n\nPlease mention the payment and pricing requirements for products and services.\n\nPlease do not post link shorteners, link aggregator websites , or auto-subscribe links.\n\n\\--\n\nAny abuse of trust will lead to bans.\n\nEncourage others who create new posts for questions to post here instead!\n\nThread will stay alive until next one so keep posting after the date in the title.\n\n\\--\n\nMeta: This is an experim",
+    "score": 13,
+    "comments": 44,
+    "url": "https://reddit.com/r/MachineLearning/comments/1sa4rlx/d_selfpromotion_thread/"
+  },
+  {
+    "subreddit": "MachineLearning",
+    "title": "[D] Monthly Who's Hiring and Who wants to be Hired?",
+    "content": "**For Job Postings** please use this template\n\n&gt;Hiring: \\[Location\\], Salary:\\[\\], \\[Remote | Relocation\\], \\[Full Time | Contract | Part Time\\]    and \\[Brief overview, what you're looking for\\]\n\n**For Those looking for jobs** please use this template\n\n&gt;Want to be Hired: \\[Location\\], Salary Expectation:\\[\\], \\[Remote | Relocation\\], \\[Full Time | Contract | Part Time\\]  Resume: \\[Link to resume\\] and \\[Brief overview, what you're looking for\\]\n\n&amp;#x200B;\n\nPlease remember that this com",
+    "score": 5,
+    "comments": 3,
+    "url": "https://reddit.com/r/MachineLearning/comments/1s8b199/d_monthly_whos_hiring_and_who_wants_to_be_hired/"
+  },
+  {
+    "subreddit": "MachineLearning",
+    "title": "[D] Dealing with an unprofessional reviewer using fake references and personal attacks in ICML26",
+    "content": "We are currently facing an ICML 2026 reviewer who lowered the score to a 1 (Confidence 5) while ignoring our rebuttal and relying on fake references and personal insults like \"close-minded\" and \"hostile.\" Despite my other reviewers giving 5s, this individual is using mathematically nonsensical proofs and making baseless accusations about MIT license/anonymity violations, all while using aggressive formatting and strange syntax errors (e.g., bolding ending with periods like \\*\\*.). The reviewer i",
+    "score": 57,
+    "comments": 10,
+    "url": "https://reddit.com/r/MachineLearning/comments/1sg0pk1/d_dealing_with_an_unprofessional_reviewer_using/"
+  },
+  {
+    "subreddit": "MachineLearning",
+    "title": "Looking for advice.[D]",
+    "content": "Hi everyone. As a mechanical engineering student, I'm trying to learn Python and machine learning applications, but I have a serious problem: I don't know how to use what I'm learning, and that's lowering my motivation. (I'm new to coding and don't have enough training.) I'm lost.",
+    "score": 4,
+    "comments": 5,
+    "url": "https://reddit.com/r/MachineLearning/comments/1sgiuhi/looking_for_adviced/"
+  },
+  {
+    "subreddit": "MachineLearning",
+    "title": "[D] How are reviewers able to get away without providing acknowledgement in ICML 2026?",
+    "content": "Today officially marks the end of the author-reviewer discussion period. The acknowledgement deadline has already passed by over 3 days and our submission still hasn't got 1/3 acknowledgement. One of the other acknowledgements picked the option A (fully resolved) for all the weaknesses they pointed out and just commented \"I intend to keep the score unchanged\". What's happening here?\n\nWe were sitting at 3/3/3 and after the rebuttal, one of the reviewers flipped to a score of 4 with confidence 5.\n",
+    "score": 39,
+    "comments": 31,
+    "url": "https://reddit.com/r/MachineLearning/comments/1sftb6h/d_how_are_reviewers_able_to_get_away_without/"
+  },
+  {
+    "subreddit": "Solopreneur",
+    "title": "New tools and changes to fight spammy self-promotion on this sub",
+    "content": "Hi all, \n\nThank you to everyone who answered the other thread about improving the conversation on this sub. \n\nNew rules: \n\n\\- Any post that receives 2 or more reports will get removed, so please report/flag spam when you see it\n\n\\- Any post with a link in it will get auto-removed. A lot of people/bots use a text post to talk about something general, then include a link to their tool\n\n\\- Link posts are still allowed to keep self-promotion available, but now the community can upvote/downvote the l",
+    "score": 7,
+    "comments": 4,
+    "url": "https://reddit.com/r/Solopreneur/comments/1rx5l2j/new_tools_and_changes_to_fight_spammy/"
+  },
+  {
+    "subreddit": "Solopreneur",
+    "title": "anyone else hit the \"too many clients but can't hire\" wall?",
+    "content": "been running a solo service business for a while and keep hitting the same ceiling. around 12-15 active clients, the quality starts slipping. not because i don't care but because there's only so many hours in a day.\n\ntried the obvious stuff -- raising prices (helps margins, doesn't solve the time problem), batching similar clients together, automating scheduling and intake. the scheduling and intake automation actually moved the needle more than anything else, freed up maybe 6-8 hours a week tha",
+    "score": 5,
+    "comments": 8,
+    "url": "https://reddit.com/r/Solopreneur/comments/1sgh4kk/anyone_else_hit_the_too_many_clients_but_cant/"
+  },
+  {
+    "subreddit": "Solopreneur",
+    "title": "Just Crossed the 100 downloads",
+    "content": "I recently crossed 100 downloads on my iOS app, Glance.\n\nNot a huge number, I know. Still early.\n\nBut when I checked the analytics, I noticed something unexpected.. People from all over the world were trying it.\n\nUS, India, Brazil, Thailand, Germany, Philippines… and more.\n\nNo ads, no launch campaign, no real distribution. Just building, posting a bit, and letting it exist.\n\nThere’s something weirdly motivating about realizing something you built is sitting on random home screens across the worl",
+    "score": 4,
+    "comments": 8,
+    "url": "https://reddit.com/r/Solopreneur/comments/1sggoac/just_crossed_the_100_downloads/"
+  },
+  {
+    "subreddit": "Solopreneur",
+    "title": "Is online business actually “location independent,” or is that a bit overstated?",
+    "content": "I used to think running an online business meant you could operate from anywhere and it would not really matter where you’re based.\n\nBut lately, after working with more international clients, I am starting to see it a bit differently.\n\nYou can work from anywhere, sure. But actually running things smoothly feels like a different story. \n\nStuff like payments, banking, or even access to certain platforms still seems tied to location more than I expected.\n\nIt is not something I noticed at the beginn",
+    "score": 1,
+    "comments": 0,
+    "url": "https://reddit.com/r/Solopreneur/comments/1sgjtg7/is_online_business_actually_location_independent/"
+  },
+  {
+    "subreddit": "Solopreneur",
+    "title": "Looking For investor ASAP",
+    "content": "Hey\n\nI am looking for an investor for my saas the idea is validated and we have now pilot center using the system the project is saas for quran centers and mosques, they investment needed for the legal documents and licenses and also to hire people and for the marketing, we are in pre seed stage and we need to grow, the ask is ($55,000 or 200,000 AED) we are in uae, i have flexibility with the equity can be discussed. ASAP because i have to renew the license and the legal documents before the en",
+    "score": 1,
+    "comments": 0,
+    "url": "https://reddit.com/r/Solopreneur/comments/1sgjnw2/looking_for_investor_asap/"
+  },
+  {
+    "subreddit": "SaaS",
+    "title": "Monthly Post: SaaS Deals + Offers",
+    "content": "This is a monthly post where SaaS founders can offer deals/discounts on their products. \n\n&amp;#x200B;\n\n**For sellers (SaaS people)**\n\n* There is no required format for posting, but make an effort to clearly present the deal/offer. It's in your interest to get people to make use of this!\n   * State what's in it for the buyer\n   * State limits\n   * Be transparent\n* Posts with no offers/deals are not permitted. This is not meant for blank self-promo\n\n&amp;#x200B;\n\n**For buyers**\n\n* Do your researc",
+    "score": 38,
+    "comments": 457,
+    "url": "https://reddit.com/r/SaaS/comments/1qlis15/monthly_post_saas_deals_offers/"
+  },
+  {
+    "subreddit": "SaaS",
+    "title": "New moderators needed - comment on this post to volunteer to become a moderator of this community.",
+    "content": "Hello everyone - this community is in need of a few new mods, and you can use the comments on this post to let us know why you’d like to be a mod here. \n\nPriority is given to redditors who have past activity in this community or other communities with related topics. It’s okay if you don’t have previous mod experience.  Our goal, when possible, is to add a group of moderators so you can work together to build the community. \n\nPlease use at least 3 sentences to explain why you’d like to be a mod ",
+    "score": 11,
+    "comments": 43,
+    "url": "https://reddit.com/r/SaaS/comments/1sg1gud/new_moderators_needed_comment_on_this_post_to/"
+  },
+  {
+    "subreddit": "SaaS",
+    "title": "Sell me your Saas in one sentence!",
+    "content": "go =)",
+    "score": 49,
+    "comments": 137,
+    "url": "https://reddit.com/r/SaaS/comments/1sfzquh/sell_me_your_saas_in_one_sentence/"
+  },
+  {
+    "subreddit": "SaaS",
+    "title": "Places to launch your startup [ 2026 Updated ]",
+    "content": "\n\nDR 90+\n\n\n\nSourceForge : DR 92\n\nG2 : DR 91\n\nProduct Hunt : DR 91\n\nHacker News : DR 91\n\nCapterra : DR 90\n\n\n\nDR 80-89\n\n\n\nSoftonic : DR 87\n\nGoodFirms : DR 83\n\nAppSumo : DR 82\n\nIndie Hackers : DR 82\n\nFazier : DR 80\n\n\n\nDR 70-79\n\n\n\nAlternativeTo : DR 79\n\nSoftware Advice : DR 79\n\nThere's an AI for That : DR 77\n\nSaaSHub : DR 76\n\nStackSocial : DR 75 \n\nPeerlist : DR 75\n\nBetaList : DR 74\n\nLaunchIgniter : DR 74\n\nUneed : DR 73\n\nSoftware World : DR 73\n\nPeerPush : DR 71\n\nTinyLaunch : DR 71\n\n\n\nDR 60-69\n\n\n\nSide",
+    "score": 85,
+    "comments": 68,
+    "url": "https://reddit.com/r/SaaS/comments/1sftezo/places_to_launch_your_startup_2026_updated/"
+  },
+  {
+    "subreddit": "SaaS",
+    "title": "$50k selling lifetime deals.. my worst mistake!",
+    "content": "needed money to fund development so i ran a lifetime deal promotion. $149 for lifetime access to a product i was charging $39/month for\n\nsold 340 of them in 2 weeks. $50k in revenue. felt amazing\n\n18 months later i sat down and did the math that should have been obvious from the start\n\nif those 340 customers had just paid monthly at 50% of the normal price, with average retention of 14 months, that's like $93k in revenue. i left $42k on the table. and that's just revenue. that's not counting the",
+    "score": 32,
+    "comments": 37,
+    "url": "https://reddit.com/r/SaaS/comments/1sfwh9j/50k_selling_lifetime_deals_my_worst_mistake/"
+  },
+  {
+    "subreddit": "Automation",
+    "title": "AI for Customer Support: What tools are the best for SaaS/Full Stack?",
+    "content": "Hi guys, it’s the first time posting, I’ve been getting a ton of value from this community so figured I'd finally ask something I've been stuck on for a while.\n\n\n\nWe're a small SaaS team and support is starting to eat us alive. Same questions every day, high volume, nothing complex, just repetitive. I've been researching AI tools for a few weeks and I keep going in circles so wanted to get real opinions from people who've actually used this stuff.\n\n\n\nTwo things I'm trying to figure out:\n\n\n\n\\- Wh",
+    "score": 31,
+    "comments": 13,
+    "url": "https://reddit.com/r/automation/comments/1sgk0i6/ai_for_customer_support_what_tools_are_the_best/"
+  },
+  {
+    "subreddit": "Automation",
+    "title": "is automating LinkedIn comments actually different from automating cold email, or are we just more s",
+    "content": "Cold email automation has been normalized for years. Nobody bats an eye at sequences, auto-follow-ups, or AI-written subject lines. But the moment someone mentions automating LinkedIn comments, people act like you've committed some kind of professional crime. I've never fully understood the distinction.\n\n  \nMy read is that it comes down to context. LinkedIn feels more personal, more like a conversation than an inbox. A comment on someone's post implies you read it, thought about it, and responde",
+    "score": 2,
+    "comments": 4,
+    "url": "https://reddit.com/r/automation/comments/1sgi1gb/is_automating_linkedin_comments_actually/"
+  },
+  {
+    "subreddit": "Automation",
+    "title": "Real talk — has anyone actually built passive income using AI?",
+    "content": "&amp;#x200B;\n\nNot theory, not a course pitch. \n\nJust curious what's actually working for people right now.\"",
+    "score": 12,
+    "comments": 24,
+    "url": "https://reddit.com/r/automation/comments/1sg4cv1/real_talk_has_anyone_actually_built_passive/"
+  },
+  {
+    "subreddit": "Automation",
+    "title": "Stop makin automations from scratch",
+    "content": "I will give you 2000+ n8n templates inbox for details.",
+    "score": 1,
+    "comments": 1,
+    "url": "https://reddit.com/r/automation/comments/1sgk7m9/stop_makin_automations_from_scratch/"
+  },
+  {
+    "subreddit": "Automation",
+    "title": "Agentic AI roles up 986% last year. 52,000 tech jobs gone in the same period. If that doesn't make you rethink your Career trajectory I don't know what will",
+    "content": "So a link din Post with these numbers and went down a rabbit hole. Gartner says 40% of enterprise apps will embed  task specific AI agents by 2026. Deloitte published a piece on how companies are starting to manage AI agents like workers with performance reviews, oversight rolls, the whole thing. Demand for age antic AI skills is growing 35 to 40% annually but supply all the short over by 50%. Trying to figure out what this means, because when I look at actual job postings its not just ML engine",
+    "score": 51,
+    "comments": 22,
+    "url": "https://reddit.com/r/automation/comments/1sfogw0/agentic_ai_roles_up_986_last_year_52000_tech_jobs/"
+  }
+]
