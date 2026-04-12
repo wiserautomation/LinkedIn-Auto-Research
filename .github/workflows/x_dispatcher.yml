@@ -40,6 +40,10 @@ jobs:
         run: |
           git config --global user.name "SupraWall Dispatch Bot"
           git config --global user.email "bot@supra-wall.com"
-          git add logs/x_queue.json
-          git commit -m "chore: update x dispatch status [skip ci]" || echo "No changes to commit"
-          git push
+          if [ -f logs/x_queue.json ]; then
+            git add logs/x_queue.json
+            git commit -m "chore: update x dispatch status [skip ci]" || echo "No changes to commit"
+            git push
+          else
+            echo "📭 No queue file to persist. Skipping git sync."
+          fi

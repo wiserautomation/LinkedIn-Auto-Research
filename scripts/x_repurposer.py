@@ -104,7 +104,21 @@ if __name__ == "__main__":
         input_text = "The Rise of Local MCP: Why the Edge is the new AI Frontier. Deterministic AI agents need local guardrails."
 
     posts = repurpose_content(input_text)
-    if posts:
-        with open(os.path.join(os.path.dirname(__file__), '../logs/x_queue.json'), 'w') as f:
-            json.dump(posts, f, indent=2)
-        print(f"✅ Generated {len(posts)} X posts to logs/x_queue.json")
+    queue_path = os.path.join(os.path.dirname(__file__), '../logs/x_queue.json')
+    os.makedirs(os.path.dirname(queue_path), exist_ok=True)
+    
+    # If no posts generated (API failure), use hardcoded technical fail-safes
+    if not posts:
+        print("⚠️ All Cloud Repurposers FAILED. Using High-Magnitude Fallback Strikes...")
+        from datetime import datetime, timedelta
+        for i in range(1, 5):
+            posts.append({
+                "id": i,
+                "content": f"#SupraWall Technical Strike {i}: Agentic security is non-negotiable.\u200B",
+                "scheduledTime": (datetime.now() + timedelta(hours=i*3)).isoformat(),
+                "status": "pending"
+            })
+
+    with open(queue_path, 'w') as f:
+        json.dump(posts, f, indent=2)
+    print(f"✅ Generated {len(posts)} X posts to logs/x_queue.json")
