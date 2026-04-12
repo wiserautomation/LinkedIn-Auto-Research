@@ -80,10 +80,24 @@ def generate_lead_magnet(reddit_data):
             content = resp.json()['choices'][0]['message']['content']
             return content
         except Exception as e:
-            print(f"⚠️ Generation fail ({model}): {str(e)}")
-            continue
+    # FINAL FALLBACK: Local Template Generation (Zero-Cost)
+    print("⚠️ All Cloud Models FAILED. Falling back to Local Generation SOP...")
+    fallback_content = f"""
+# Stop Long Context AI Failures with Deterministic Guardrails 🛡️
 
-    return None
+Agentic workflows failing on long contexts isn't just a debug issue—it's a security death spiral.
+
+We built a 5-Step Token-Secure Blueprint to harden agentic workflows:
+1. Audit Context Boundaries
+2. Enforce Token-Aware Gateways
+3. Snip Malicious Overflows
+4. Monitor Tool-Call Latency
+5. Deterministic Guardrails (SupraWall)
+
+Stop letting your agents choke on context. [Blueprints in Bio]
+#SupraWall #AI #Security
+"""
+    return fallback_content.strip()
 
 if __name__ == "__main__":
     import argparse
