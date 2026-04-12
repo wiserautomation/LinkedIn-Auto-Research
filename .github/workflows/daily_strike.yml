@@ -41,8 +41,11 @@ jobs:
 
       - name: Execute Daily Strike
         env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           LINKEDIN_AUTH_JSON: ${{ secrets.LINKEDIN_AUTH_JSON }}
           X_AUTH_JSON: ${{ secrets.X_AUTH_JSON }}
+          DISCORD_WEBHOOK_LINKEDIN: ${{ secrets.DISCORD_WEBHOOK_LINKEDIN }}
+          DISCORD_WEBHOOK_X: ${{ secrets.DISCORD_WEBHOOK_X }}
           GITHUB_ACTIONS: "true"
         run: |
           bash scripts/autonomous_gtm_trigger.sh
@@ -51,6 +54,6 @@ jobs:
         run: |
           git config --global user.name "SupraWall GTM Bot"
           git config --global user.email "bot@supra-wall.com"
-          git add logs/x_queue.json
-          git commit -m "chore: update x queue [skip ci]" || echo "No changes to commit"
+          git add logs/x_queue.json logs/cron.log
+          git commit -m "chore: update gtm logs [skip ci]" || echo "No changes to commit"
           git push

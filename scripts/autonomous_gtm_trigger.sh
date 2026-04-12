@@ -20,6 +20,18 @@ else
 fi
 
 export PATH="$(dirname "$NODE_BIN"):$PATH"
+# Force load environment for sub-processes
+if [ -f .env ]; then
+    echo "⚙️  Loading environment from .env..." >> logs/cron.log
+    set -a; source .env; set +a
+fi
+
+# Diagnostic: Verify critical keys (obfuscated)
+if [ -z "$OPENROUTER_API_KEY" ]; then
+    echo "⚠️  WARNING: OPENROUTER_API_KEY is null in orchestrator!" >> logs/cron.log
+else
+    echo "✅ OPENROUTER_API_KEY detected (Length: ${#OPENROUTER_API_KEY})" >> logs/cron.log
+fi
 
 echo "🚀 [$(date)] Starting Autonomous GTM Strike..." >> logs/cron.log
 
