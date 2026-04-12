@@ -1,0 +1,56 @@
+name: Daily Technical Strike
+
+on:
+  schedule:
+    - cron: '0 4 * * *' # 7:00 AM EEST
+  workflow_dispatch:
+
+jobs:
+  strike:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN || github.token }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: |
+          npm install
+          pip install requests python-dotenv
+
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Rehydrate Secrets
+        run: |
+          echo "${{ secrets.ENV_CONTENT }}" > .env
+          mkdir -p logs assets/auth assets/thumbnails
+
+      - name: Execute Daily Strike
+        env:
+          LINKEDIN_AUTH_JSON: ${{ secrets.LINKEDIN_AUTH_JSON }}
+          X_AUTH_JSON: ${{ secrets.X_AUTH_JSON }}
+          GITHUB_ACTIONS: "true"
+        run: |
+          bash scripts/autonomous_gtm_trigger.sh
+
+      - name: Persist X Queue
+        run: |
+          git config --global user.name "SupraWall GTM Bot"
+          git config --global user.email "bot@supra-wall.com"
+          git add logs/x_queue.json
+          git commit -m "chore: update x queue [skip ci]" || echo "No changes to commit"
+          git push

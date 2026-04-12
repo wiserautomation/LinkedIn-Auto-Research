@@ -37,9 +37,17 @@ async function publishPost(text, mediaPath) {
         page = await browser.newPage();
         await page.setViewport({ width: 1440, height: 3000 }); // ULTRA TALL VIEWPORT
 
-    // 1. Load Cookies
-    if (!fs.existsSync(AUTH_FILE)) throw new Error("Auth file missing.");
-    const cookies = JSON.parse(fs.readFileSync(AUTH_FILE));
+    // 1. Load Cookies (File or Env)
+    let cookies;
+    if (process.env.LINKEDIN_AUTH_JSON) {
+      console.log("📡 Rehydrating session from Environment Secrets...");
+      cookies = JSON.parse(process.env.LINKEDIN_AUTH_JSON);
+    } else if (fs.existsSync(AUTH_FILE)) {
+      console.log("📡 Loading session from Local Auth File...");
+      cookies = JSON.parse(fs.readFileSync(AUTH_FILE));
+    } else {
+      throw new Error("❌ Auth credentials missing (checked LINKEDIN_AUTH_JSON and auth file).");
+    }
     await page.setCookie(...cookies);
 
     // 2. Navigate to Feed

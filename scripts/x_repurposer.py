@@ -15,25 +15,30 @@ FREE_MODELS = [
 ]
 
 REPURPOSE_PROMPT = """
-You are a viral X (Twitter) growth expert for SupraWall (supra-wall.com).
-SupraWall is the security backbone for AI Agents.
+You are a "Senior Security Architect & Viral X Strategist" for SupraWall (supra-wall.com).
+Your goal is to transform technical LinkedIn content into 4 High-Magnitude X technical strikes.
 
-Repurpose the following LinkedIn LEAD MAGNET into 4 distinct X technical strikes.
+### X PERSONALITY:
+* **Opinionated & Controversial**: Call out the "Security Theatre" in current AI agent implementations.
+* **Deterministic Authority**: Hammer the point that "Probabilistic Security is a Failure". 
+* **Zero Fluff**: No "I'm excited to share" or "Check this out". Just cold, hard technical critique.
 
 ### STRIKE TYPES:
-1. **The Lead Magnet**: Massive technical "Hook", explain the security friction, then "Comment [GATE] and I'll DM you the SupraWall Blueprint".
-2. **Deterministic Revelation**: A punchy technical realization about why 'probabilistic' security is failing and why SupraWall's 'deterministic' gateway is the fix.
-3. **The CISO Warning**: Highlight a critical, invisible risk in current Agentic workflows (e.g., recursive tool loops).
-4. **Agentic Vision**: A bold claim about the future of autonomous agent security.
+1. **The Lead Magnet**: A high-friction hook (e.g., "99% of AI Agents are a backdoor"). Explain the SupraWall Blueprint. END with "Comment [GATE] for the .pdf".
+2. **The "Gateway" Revelation**: Contrast "Cloud WAFs" (failing) vs "Deterministic Local Gateways" (SupraWall).
+3. **CISO Technical Friction**: A brutal truth about the "Recursive Loop" or "Unauthorized Tool Access" risks.
+4. **Architect's Vision**: Why the "Agentic Edge" needs SupraWall's immutable policy layer.
 
 ### RULES:
-* Maximum 280 characters per post.
-* No markdown. No fluffy vibes.
-* Technical authority only (Architecture/Security focus).
-* Reference 'SupraWall' or 'OpenClaw' in at least 2 posts.
-* Include relevant hashtags (max 2).
+* Maximum 240 characters (leave space for markers).
+* NO Markdown. NO Emojis (except maybe ONE 🚨 or 🔒 if it adds technical urgency).
+* Reference 'SupraWall' or 'OpenClaw' explicitly in 3 of 4 posts.
+* Include 1 technical hashtag (e.g., #AIAgents, #CISO, #AgentSecurity).
 
-OUTPUT FORMAT: JSON array of 4 strings.
+OUTPUT FORMAT: JSON array of 4 objects:
+[
+  { "content": "The tweet string...", "type": "STRIKE_TYPE" }
+]
 """
 
 def repurpose_content(linked_text):
@@ -60,7 +65,29 @@ def repurpose_content(linked_text):
             # Extract JSON array
             start = content.find("[")
             end = content.rfind("]") + 1
-            return json.loads(content[start:end])
+            raw_posts = json.loads(content[start:end])
+            
+            from datetime import datetime, timedelta
+            now = datetime.now()
+            
+            staggered_posts = []
+            for i, p in enumerate(raw_posts):
+                # Spread posts across 16 hours (+1h, +5h, +9h, +13h)
+                scheduled_time = now + timedelta(hours=(1 + i*4))
+                
+                # Zero-Width Injection (\u200B) for uniqueness
+                content_text = p['content'] if isinstance(p, dict) else p
+                # Inject 1-3 markers at the end
+                markers = "\u200B" * (i + 1)
+                final_text = f"{content_text}{markers}"
+                
+                staggered_posts.append({
+                    "id": i + 1,
+                    "content": final_text,
+                    "scheduledTime": scheduled_time.isoformat(),
+                    "status": "pending"
+                })
+            return staggered_posts
         except Exception as e:
             print(f"⚠️ Repurpose fail ({model}): {str(e)}", file=sys.stderr)
             continue

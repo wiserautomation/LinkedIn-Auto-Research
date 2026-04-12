@@ -19,6 +19,7 @@ async function postToXStealth(text) {
     const uniqueText = `${text}${invisibleSalt}`;
     const encodedText = encodeURIComponent(uniqueText);
 
+    console.log(`📡 Using Browser: ${process.env.PUPPETEER_EXECUTABLE_PATH || 'SYSTEM_DEFAULT'}`);
     const launchOptions = {
         headless: "new",
         args: [
@@ -37,8 +38,17 @@ async function postToXStealth(text) {
     await page.setViewport({ width: 1440, height: 1200 });
 
     try {
-        if (!fs.existsSync(AUTH_FILE)) throw new Error("X Auth cookies missing.");
-        const cookies = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf-8'));
+        // 1. Load Cookies (File or Env)
+        let cookies;
+        if (process.env.X_AUTH_JSON) {
+            console.log("📡 Rehydrating X session from Environment Secrets...");
+            cookies = JSON.parse(process.env.X_AUTH_JSON);
+        } else if (fs.existsSync(AUTH_FILE)) {
+            console.log("📡 Loading X session from Local Auth File...");
+            cookies = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf-8'));
+        } else {
+            throw new Error("❌ X Auth credentials missing (checked X_AUTH_JSON and auth file).");
+        }
         await page.setCookie(...cookies);
 
         console.log("📡 Navigating to X Intent (Stealth Mode)...");

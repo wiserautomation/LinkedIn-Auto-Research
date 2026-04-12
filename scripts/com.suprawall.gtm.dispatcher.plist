@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.suprawall.gtm.dispatcher</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/alejandropeghin/node-v22/bin/node</string>
+        <string>/Users/alejandropeghin/Desktop/OpenClaw/LinkedIn-auto-research/scripts/x_dispatcher.js</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>1800</integer>
+    <key>WorkingDirectory</key>
+    <string>/Users/alejandropeghin/Desktop/OpenClaw/LinkedIn-auto-research</string>
+    <key>StandardOutPath</key>
+    <string>/Users/alejandropeghin/Desktop/OpenClaw/LinkedIn-auto-research/logs/cron.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/alejandropeghin/Desktop/OpenClaw/LinkedIn-auto-research/logs/cron.log</string>
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>

@@ -6,3 +6,6 @@ logs/
 !package.json
 !package-lock.json
 !trending.json
+.env
+assets/auth/
+logs/

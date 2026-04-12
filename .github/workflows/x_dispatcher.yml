@@ -1,0 +1,45 @@
+name: X Technical Dispatcher
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN || github.token }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Execute Dispatch
+        env:
+          X_AUTH_JSON: ${{ secrets.X_AUTH_JSON }}
+          DISCORD_WEBHOOK_X: ${{ secrets.DISCORD_WEBHOOK_X }}
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+          GITHUB_ACTIONS: "true"
+        run: |
+          node scripts/x_dispatcher.js
+
+      - name: Persist Queue Status
+        run: |
+          git config --global user.name "SupraWall Dispatch Bot"
+          git config --global user.email "bot@supra-wall.com"
+          git add logs/x_queue.json
+          git commit -m "chore: update x dispatch status [skip ci]" || echo "No changes to commit"
+          git push

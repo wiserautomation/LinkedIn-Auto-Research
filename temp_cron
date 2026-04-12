@@ -1,0 +1,4 @@
+0 8 * * * cd /Users/alejandropeghin/OpenClaw/agents/jack_tube && /usr/bin/python3 jack_tube_agent.py >> /Users/alejandropeghin/OpenClaw/agents/jack_tube/daily_run.log 2>&1
+0 10 * * * cd /Users/alejandropeghin/OpenClaw && python3 gtm_daily_run_v2.py SupraWall
+0 7 * * * /Users/alejandropeghin/Desktop/OpenClaw/LinkedIn-auto-research/scripts/autonomous_gtm_trigger.sh
+*/30 * * * * /Users/alejandropeghin/node-v22/bin/node /Users/alejandropeghin/Desktop/OpenClaw/LinkedIn-auto-research/scripts/x_dispatcher.js >> /Users/alejandropeghin/Desktop/OpenClaw/LinkedIn-auto-research/logs/cron.log 2>&1
