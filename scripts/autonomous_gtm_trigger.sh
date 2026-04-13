@@ -38,7 +38,7 @@ echo "🚀 [$(date)] Starting Autonomous GTM Strike..." >> logs/cron.log
 # 1. Generate Lead Magnet Content
 # Use a fresh temp log to avoid false positives from previous runs
 RUN_LOG="logs/current_run.log"
-/usr/bin/python3 scripts/lead_gen_agent.py > "$RUN_LOG" 2>&1
+         /bin/python3 scripts/lead_gen_agent.py > "$RUN_LOG" 2>&1
 cat "$RUN_LOG" >> logs/cron.log
 
 # --- CRITICAL VALIDATION ---
