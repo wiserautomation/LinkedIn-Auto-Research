@@ -47,6 +47,7 @@ cat "$RUN_LOG" >> logs/cron.log
 if ! grep -q "✅ Lead Magnet generated" "$RUN_LOG"; then
     echo "❌ [$(date)] Content Generation FAILED. Full technical logs below:" >> logs/cron.log
     cat "$RUN_LOG" >> logs/cron.log
+    cat "$RUN_LOG"
     "$NODE_BIN" scripts/discord_reporter.js "FAIL" "🔴 **CRITICAL: GTM Automation Blocked**
 The Technical Agent failed to generate content. See GitHub Action logs for full traceback. Strike aborted."
     exit 1
