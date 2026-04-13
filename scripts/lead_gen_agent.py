@@ -72,7 +72,6 @@ def generate_lead_magnet(reddit_data):
                 {"role": "user", "content": prompt}
             ]
         }
-
         try:
             print(f"📡 Attempting generation with {model}...")
             resp = requests.post("https://openrouter.ai/api/v1/chat/completions", json=payload, headers=headers)
@@ -80,6 +79,9 @@ def generate_lead_magnet(reddit_data):
             content = resp.json()['choices'][0]['message']['content']
             return content
         except Exception as e:
+            print(f"⚠️ Generation fail ({model}): {str(e)}")
+            continue
+
     # FINAL FALLBACK: Local Template Generation (Zero-Cost)
     print("⚠️ All Cloud Models FAILED. Falling back to Local Generation SOP...")
     fallback_content = f"""

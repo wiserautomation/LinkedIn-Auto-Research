@@ -45,9 +45,10 @@ cat "$RUN_LOG" >> logs/cron.log
 # Check if the generation actually succeeded in THIS specific run
 # We check for the explicit success emoji/string which is only printed on SUCCESS.
 if ! grep -q "✅ Lead Magnet generated" "$RUN_LOG"; then
-    echo "❌ [$(date)] Content Generation FAILED. Aborting strike to prevent stale posting." >> logs/cron.log
+    echo "❌ [$(date)] Content Generation FAILED. Full technical logs below:" >> logs/cron.log
+    cat "$RUN_LOG" >> logs/cron.log
     "$NODE_BIN" scripts/discord_reporter.js "FAIL" "🔴 **CRITICAL: GTM Automation Blocked**
-The Technical Agent failed to generate content in the current run (ALL rotation models failed). Check OpenRouter API Key/Balance! Strike aborted."
+The Technical Agent failed to generate content. See GitHub Action logs for full traceback. Strike aborted."
     exit 1
 fi
 
