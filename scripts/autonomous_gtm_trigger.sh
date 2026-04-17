@@ -53,15 +53,19 @@ The Technical Agent failed to generate content. See GitHub Action logs for full 
     exit 1
 fi
 
-# 2. LinkedIn Multimedia Broadcast (with Visual Rotation)
-IMG_INDEX=$(( ( $(date +%d) % 3 ) + 1 ))
-THUMBNAIL_PATH="$PROJECT_DIR/assets/thumbnails/gallery_${IMG_INDEX}.png"
+# 2. LinkedIn Multimedia Broadcast (Unique Technical Proof)
+# Generate a fresh architectural proof visual for every post to avoid repetition
+"$NODE_BIN" scripts/generate_visual_proof.js >> logs/cron.log 2>&1
+THUMBNAIL_PATH="$PROJECT_DIR/assets/thumbnails/deterministic_proof_strike.png"
 
 "$NODE_BIN" scripts/puppeteer_linkedin_post.js "$(cat logs/temp_post.txt)" "$THUMBNAIL_PATH" >> logs/cron.log 2>&1
 if [ $? -eq 0 ]; then
     "$NODE_BIN" scripts/discord_reporter.js "LINKEDIN" "🚀 **LinkedIn technical Strike LIVE**
 Title: $(head -n 1 logs/temp_post.txt)
 SupraWall project presence confirmed on feed." "$THUMBNAIL_PATH"
+else
+    "$NODE_BIN" scripts/discord_reporter.js "ALARM" "🔴 **CRITICAL: LinkedIn GTM Strike FAILED**
+The native posting sequence aborted. Immediate manual oversight required. Check logs/cron.log for trace."
 fi
 
 # 3. Expertise Engagement Loop

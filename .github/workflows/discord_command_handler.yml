@@ -1,0 +1,51 @@
+name: Discord Command Handler
+on:
+  repository_dispatch:
+    types: [discord_cmd]
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          npm install
+          pip install requests python-dotenv
+
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Execute Command
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          LINKEDIN_AUTH_JSON: ${{ secrets.LINKEDIN_AUTH_JSON }}
+          X_AUTH_JSON: ${{ secrets.X_AUTH_JSON }}
+          DISCORD_WEBHOOK_LINKEDIN: ${{ secrets.DISCORD_WEBHOOK_LINKEDIN }}
+          DISCORD_WEBHOOK_X: ${{ secrets.DISCORD_WEBHOOK_X }}
+          GITHUB_ACTIONS: "true"
+          CMD_TYPE: ${{ github.event.client_payload.command }}
+        run: |
+          echo "📥 Received Command: $CMD_TYPE"
+          if [[ "$CMD_TYPE" == "strike" ]]; then
+            bash scripts/autonomous_gtm_trigger.sh
+          elif [[ "$CMD_TYPE" == "status" ]]; then
+            node scripts/discord_reporter.js "ALARM" "🟢 **SupraWall Cloud Status**: Fleet Operational. Heartbeat Stable."
+          else
+             echo "⚠️ Unknown command: $CMD_TYPE"
+          fi

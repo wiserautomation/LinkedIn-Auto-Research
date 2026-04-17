@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.suprawall.gtm.dispatcher</string>
+    <string>com.suprawall.gtm.dispatcher.v2</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/alejandropeghin/node-v22/bin/node</string>
-        <string>/Users/alejandropeghin/Desktop/OpenClaw/LinkedIn-auto-research/scripts/x_dispatcher.js</string>
+        <string>/bin/bash</string>
+        <string>/Users/alejandropeghin/Desktop/OpenClaw/LinkedIn-auto-research/scripts/launchd_dispatcher_wrapper.sh</string>
     </array>
     <key>StartInterval</key>
     <integer>1800</integer>
@@ -17,7 +17,5 @@
     <string>/Users/alejandropeghin/Desktop/OpenClaw/LinkedIn-auto-research/logs/cron.log</string>
     <key>StandardErrorPath</key>
     <string>/Users/alejandropeghin/Desktop/OpenClaw/LinkedIn-auto-research/logs/cron.log</string>
-    <key>RunAtLoad</key>
-    <true/>
 </dict>
 </plist>

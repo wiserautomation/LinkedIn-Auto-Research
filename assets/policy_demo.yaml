@@ -1,0 +1,33 @@
+# SupraWall Deterministic Policy: Agentic Loop Hardening
+# ======================================================
+# Enforces context boundaries and tool-call deterministic gates.
+
+version: 1.2
+tenant: suprawall-ops
+protection_level: HIGH_AUTHORITY
+
+policies:
+  - name: prevent_context_sprawl
+    trigger: on_context_overflow
+    max_tokens_per_turn: 4096
+    action: 
+      - truncate_at_boundary
+      - logger: "ALARM: Context drift detected on agent node-3"
+      - inject_deterministic_prompt: "STRICT_GOAL_ALIGNMENT"
+
+  - name: tool_call_gate
+    trigger: on_external_tool_invocation
+    verification:
+      type: "DETERMINISTIC_CHECK"
+      mode: "HARD_BOUND"
+      allowed_packages: ["@suprawall/sdk", "@notionhq/client"]
+      block_unauthorized_package: true
+    action: 
+      - intercept
+      - sign_payload
+      - relay_to_agent
+
+audit:
+  path: "/var/logs/suprawall/audit.strike"
+  retention: 90d
+  gdpr_cryptographic_shredding: active

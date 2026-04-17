@@ -190,36 +190,53 @@ async function runCommentEngagement() {
             // Press 'Post' Comment
             console.log("📤 Submitting comment...");
             
-            // Try standard shortcuts
-            await page.keyboard.down('Meta');
+            // Try standard keyboard alternates first
             await page.keyboard.press('Enter');
-            await page.keyboard.up('Meta');
-            await new Promise(r => setTimeout(r, 1000));
-            
-            await page.keyboard.down('Control');
-            await page.keyboard.press('Enter');
-            await page.keyboard.up('Control');
-            await new Promise(r => setTimeout(r, 1000));
+            await new Promise(r => setTimeout(r, 2000));
 
-            const submitBtn = await container.$('button.comments-comment-box__submit-button, button[type="submit"]');
+            // More comprehensive submit button search
+            const submitBtn = await page.evaluateHandle(() => {
+                const selectors = [
+                    'button.comments-comment-box__submit-button',
+                    'button.artdeco-button--primary.artdeco-button--2.comments-comment-box__submit-button',
+                    'button[type="submit"]',
+                ];
+                for (const sel of selectors) {
+                    const btn = document.querySelector(sel);
+                    if (btn && !btn.disabled && btn.offsetParent !== null) return btn;
+                }
+                // Fallback: find any button with "Post" text
+                const btns = Array.from(document.querySelectorAll('button'));
+                return btns.find(b => b.innerText.trim() === 'Post' && !b.disabled) || null;
+            });
+
             if (submitBtn) {
-                 const isDisabled = await page.evaluate(el => el.disabled || el.getAttribute('aria-disabled') === 'true', submitBtn);
-                 if (!isDisabled) {
-                     await submitBtn.click();
+                 try {
+                     await page.evaluate((btn) => {
+                         if (btn) {
+                             btn.scrollIntoView();
+                             btn.click();
+                         }
+                     }, submitBtn);
                      await new Promise(r => setTimeout(r, 4000));
                      
                      console.log(`✅ Comment submitted! Reporting interaction...`);
                      const screenshotPath = path.join(__dirname, `../logs/engagement_${commentsMade}.png`);
                      try {
-                         await container.screenshot({ path: screenshotPath });
-                         execSync(`node ${path.join(__dirname, 'discord_reporter.js')} "LINKEDIN" "🔥 **Expert Engagement Proof** (#${commentsMade + 1})\nKeyword: ${keyword}\nOn Post: ${postText.substring(0, 100)}..." ${screenshotPath}`);
+                         await page.screenshot({ path: screenshotPath }); 
+                         const sanitizedPostText = postText.substring(0, 100).replace(/"/g, "'").replace(/\n/g, ' ');
+                         execSync(`node ${path.join(__dirname, 'discord_reporter.js')} "LINKEDIN" "🔥 **Expert Engagement Proof** (#${commentsMade + 1})\nKeyword: ${keyword}\nOn Post: ${sanitizedPostText}..." ${screenshotPath}`);
                      } catch (err) {
                          console.log(`⚠️ Report/Screenshot fail: ${err.message}`);
                      }
 
                      saveCommentedPost(identifier);
                      commentsMade++;
+                 } catch (clickErr) {
+                     console.log(`⚠️ Click failed: ${clickErr.message}`);
                  }
+            } else {
+                 console.log("⚠️ Submit button not found or disabled. Skipping.");
             }
             
             // Pause nicely between actions

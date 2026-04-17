@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    background-color: #0d1117;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'SF Mono', 'Courier New', Courier, monospace;
+  }
+  .window {
+    width: 600px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    overflow: hidden;
+  }
+  .header {
+    background: #21262d;
+    padding: 10px;
+    display: flex;
+    gap: 6px;
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .red { background: #ff5f56; }
+  .yellow { background: #ffbd2e; }
+  .green { background: #27c93f; }
+  .content {
+    padding: 20px;
+    color: #c9d1d9;
+    line-height: 1.5;
+    font-size: 14px;
+    white-space: pre-wrap;
+  }
+  .comment { color: #8b949e; }
+  .key { color: #79c0ff; }
+  .string { color: #a5d6ff; }
+  .keyword { color: #ff7b72; }
+</style>
+</head>
+<body>
+<div class="window">
+  <div class="header">
+    <div class="dot red"></div>
+    <div class="dot yellow"></div>
+    <div class="dot green"></div>
+  </div>
+  <div class="content"><span class="comment"># SupraWall Deterministic Policy: Agentic Loop Hardening</span>
+<span class="comment"># ======================================================</span>
+
+<span class="key">version</span>: <span class="string">1.2</span>
+<span class="key">tenant</span>: <span class="string">suprawall-ops</span>
+<span class="key">protection_level</span>: <span class="keyword">HIGH_AUTHORITY</span>
+
+<span class="key">policies</span>:
+  - <span class="key">name</span>: <span class="string">prevent_context_sprawl</span>
+    <span class="key">trigger</span>: <span class="string">on_context_overflow</span>
+    <span class="key">max_tokens_per_turn</span>: <span class="string">4096</span>
+    <span class="key">action</span>: 
+      - <span class="keyword">truncate_at_boundary</span>
+      - <span class="key">logger</span>: <span class="string">"ALARM: Context drift detected"</span>
+
+  - <span class="key">name</span>: <span class="string">tool_call_gate</span>
+    <span class="key">trigger</span>: <span class="string">on_external_tool_invocation</span>
+    <span class="key">verification</span>:
+      <span class="key">type</span>: <span class="string">"DETERMINISTIC_CHECK"</span>
+      <span class="key">allowed_packages</span>: [<span class="string">"@suprawall/sdk"</span>]
+    <span class="key">action</span>: 
+      - <span class="keyword">intercept</span>
+      - <span class="keyword">sign_payload</span>
+  </div>
+</div>
+</body>
+</html>

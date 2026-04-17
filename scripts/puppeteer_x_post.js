@@ -97,10 +97,11 @@ async function postToXStealth(text) {
         try {
             const webhook = process.env.DISCORD_WEBHOOK_X || process.env.DISCORD_WEBHOOK_LINKEDIN;
             if (webhook) {
-                // Sanitize message for shell (remove newlines and quotes)
-                const sanitizedMsg = `🐦 **X Stealth Strike Verified**\nContent: "${text.substring(0, 150).replace(/\n/g, ' ').replace(/"/g, '')}..."`;
+                // Sanitize message for shell (remove single quotes and newlines)
+                const sanitizedMsg = `🐦 **X Stealth Strike Verified**\nContent: "${text.substring(0, 150).replace(/\n/g, ' ').replace(/'/g, "")}..."`;
                 const reporterPath = path.join(__dirname, 'discord_reporter.js');
-                execSync(`"${process.execPath}" "${reporterPath}" "X" "${sanitizedMsg}" "${postScreenshot}"`, { stdio: 'inherit' });
+                const safeMsg = sanitizedMsg.replace(/"/g, '\\"');
+                execSync(`"${process.execPath}" "${reporterPath}" "X" "${safeMsg}" "${postScreenshot}"`, { stdio: 'inherit' });
                 console.log("✅ Evidence shipped to Discord.");
             }
         } catch (discordErr) {
